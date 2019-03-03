@@ -79,7 +79,7 @@ class fb {
     clearInterval(this.cresInterval);
   };
 
-  authStateDriver = callBack => {
+  authStateDriver = callBack =>
     this.base.auth().onAuthStateChanged(user => {
       if (user) {
         // user is logged in
@@ -100,7 +100,6 @@ class fb {
         callBack({ signedIn: false });
       }
     });
-  };
 
   crescPush = user =>
     this.base
