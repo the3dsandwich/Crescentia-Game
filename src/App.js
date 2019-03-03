@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { fb } from "./firebase";
+import Main from "./main";
+import Login from "./login";
+import { CircularProgress } from "@material-ui/core";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+  constructor(props) {
+    super(props);
+    this.state = { loading: true, user: { signedIn: false } };
+    this.firebase = new fb();
+    this.firebase.authStateDriver(user =>
+      this.setState(user, this.setState({ loading: false }))
     );
+  }
+
+  render() {
+    if (this.state.loading)
+      return (
+        <CircularProgress
+          style={{ position: "absolute", top: "30%", left: "45%" }}
+        />
+      );
+    else if (this.state.signedIn)
+      return <Main user={this.state} firebase={this.firebase} />;
+    else return <Login user={this.state} firebase={this.firebase} />;
   }
 }
 
