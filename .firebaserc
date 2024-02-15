@@ -1,5 +1,6 @@
 {
   "projects": {
-    "production": "crescentia-51c6a"
+    "production": "crescentia-51c6a",
+    "default": "crescentia-51c6a"
   }
 }
