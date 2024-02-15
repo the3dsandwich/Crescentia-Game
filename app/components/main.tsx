@@ -53,7 +53,7 @@ const Main = () => {
         </Grid>
         <Grid item xs={12} textAlign="center">
           <Typography variant="h1" align="center">
-            {value}
+            <span onClick={manualProgress}>{value}</span>
           </Typography>
           <Typography variant="caption" align="center">
             Cresc.
