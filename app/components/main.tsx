@@ -52,7 +52,17 @@ const Main = () => {
           </Button>
         </Grid>
         <Grid item xs={12} textAlign="center">
-          <Typography variant="h1" align="center">
+          <Typography
+            variant="h1"
+            align="center"
+            style={{
+              cursor: "pointer",
+              userSelect: "none",
+              WebkitUserSelect: "none",
+              msUserSelect: "none",
+              MozUserSelect: "none",
+            }}
+          >
             <span onClick={manualProgress}>{value}</span>
           </Typography>
           <Typography variant="caption" align="center">
