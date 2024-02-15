@@ -2,7 +2,7 @@
 
 ## Visit at
 
-Visit here for demo ([Cresentia](https://crescentia-51c6a.firebaseapp.com/))
+Visit here for demo ([Cresentia](https://crescentia-51c6a.web.app/))
 
 ## Getting Started
 
