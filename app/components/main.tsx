@@ -5,6 +5,7 @@ import { Grid, Typography, Button, Tooltip, Fab, Input } from "@mui/material";
 import { ExitToApp } from "@mui/icons-material";
 import { useFirebaseLogin } from "@/utilities/useFirebaseLogin";
 import { useFirebaseUserData } from "@/utilities/useFirebaseUserData";
+import Image from "next/image";
 
 const Main = () => {
   const { signOut, currentUser } = useFirebaseLogin();
@@ -20,6 +21,15 @@ const Main = () => {
   const value = progress?.value ?? 0;
   const isAnonymous = currentUser?.isAnonymous ?? true;
   const [progressId, setProgressId] = useState("");
+  const [showDoge, setShowDoge] = useState(false);
+
+  const handleLevelUp = () => {
+    levelUp();
+    setShowDoge(true);
+    setTimeout(() => {
+      setShowDoge(false);
+    }, 1000);
+  };
 
   return (
     !loadingProgress && (
@@ -29,7 +39,7 @@ const Main = () => {
         justifySelf="center"
         justifyContent="center"
         alignContent="center"
-        style={{ height: 500 }}
+        style={{ height: "calc(100vh - 2rem)" }}
       >
         <Grid item xs={12}>
           <Typography variant="h4" align="center">
@@ -42,7 +52,7 @@ const Main = () => {
           </Typography>
           <Button
             fullWidth
-            onClick={levelUp}
+            onClick={handleLevelUp}
             disabled={value < lvlUpCost(level)}
           >
             Level Up! ({lvlUpCost(level)})
@@ -69,6 +79,11 @@ const Main = () => {
             Cresc.
           </Typography>
         </Grid>
+        {showDoge && (
+          <Grid item xs={12} textAlign="center">
+            <Image width={300} height={300} src="doge.gif" alt="" />
+          </Grid>
+        )}
 
         {isAnonymous ? (
           <Grid
