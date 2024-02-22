@@ -73,7 +73,7 @@ const Main = () => {
               MozUserSelect: "none",
             }}
           >
-            <span onClick={manualProgress}>{value}</span>
+            <span onClick={manualProgress}>{value.toLocaleString()}</span>
           </Typography>
           <Typography variant="caption" align="center">
             Cresc.
