@@ -22,13 +22,27 @@ const Main = () => {
   const isAnonymous = currentUser?.isAnonymous ?? true;
   const [progressId, setProgressId] = useState("");
   const [showDoge, setShowDoge] = useState(false);
+  const [dogeStyle, setDogeStyle] = useState<React.CSSProperties>({
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "300",
+    height: "300",
+    zIndex: 999, // Ensure the doge is on top of other elements
+  });
 
   const handleLevelUp = () => {
     levelUp();
+    setDogeStyle({
+      ...dogeStyle,
+      top: `calc(${Math.floor(Math.random() * 40)}vh + 30vh)`,
+      left: `calc(${Math.floor(Math.random() * 40)}vw + 30vw)`,
+      rotate: `${Math.floor(Math.random() * 360)}deg`,
+    });
     setShowDoge(true);
     setTimeout(() => {
       setShowDoge(false);
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -80,9 +94,9 @@ const Main = () => {
           </Typography>
         </Grid>
         {showDoge && (
-          <Grid item xs={12} textAlign="center">
+          <div style={dogeStyle}>
             <Image width={300} height={300} src="doge.gif" alt="" />
-          </Grid>
+          </div>
         )}
 
         {isAnonymous ? (
